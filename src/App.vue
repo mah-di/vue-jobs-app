@@ -1,8 +1,10 @@
 <script setup>
+import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">hello</h1>
+  <NavBar />
+  <router-view></router-view>
 </template>
 
 <style scoped></style>
