@@ -100,20 +100,6 @@
       "companyId": 2
     },
     {
-      "id": "7827",
-      "type": "Full-Time",
-      "title": "Dicta fuga Molestia",
-      "description": "In Nam et qui expedi",
-      "location": "Franklin and Klein Inc",
-      "salary": "$50K - $60K",
-      "companyId": {
-        "name": "Garza and Strickland Inc",
-        "description": "Assumenda nulla beat",
-        "contactEmail": "cepana@mailinator.com",
-        "contactPhone": "+1 (464) 469-6558"
-      }
-    },
-    {
       "id": "5947",
       "type": "Full-Time",
       "title": "Fuga Maiores dolore",
@@ -148,6 +134,24 @@
       "location": "Hogan Myers Co",
       "salary": "$90K - $100K",
       "companyId": "efe6"
+    },
+    {
+      "id": "fef0",
+      "type": "Remote",
+      "title": "Mollitia omnis dolor",
+      "description": "Quaerat nemo cupidit",
+      "location": "Et quos dolores omni",
+      "salary": "$90K - $100K",
+      "companyId": "efe6"
+    },
+    {
+      "id": "0702",
+      "type": "Part-Time",
+      "title": "Atque non sunt cons",
+      "description": "Rerum accusamus esse",
+      "location": "Voluptates qui archi",
+      "salary": "$50K - $60K",
+      "companyId": "b720"
     }
   ],
   "companies": [
@@ -166,8 +170,8 @@
       "id": "2",
       "name": "Veneer Solutions",
       "description": "Veneer Solutions is a creative agency specializing in digital design and development. Our team is dedicated to pushing the boundaries of creativity and innovation to deliver exceptional results for our clients.",
-      "contactEmail": "contact@loremipsums.com",
-      "contactPhone": "555-555-5558",
+      "contactEmail": "contact@loremipsum.com",
+      "contactPhone": "555-555-5552",
       "credentials": {
         "email": "contact@loremipsums.com",
         "password": "1234"
@@ -178,9 +182,20 @@
       "name": "Preston Molina Associates",
       "description": "Voluptatibus esse l",
       "contactEmail": "lyne@mailinator.com",
-      "contactPhone": "+1 (513) 841-4073",
+      "contactPhone": "+1 (513) 841-4072",
       "credentials": {
         "email": "humoruhel@mailinator.com",
+        "password": "1234"
+      }
+    },
+    {
+      "id": "b720",
+      "name": "Sawyer and Valencia Traders",
+      "description": "Et autem quis reicie",
+      "contactEmail": "rata@mailinator.com",
+      "contactPhone": "+1 (708) 859-6791",
+      "credentials": {
+        "email": "fynotoku@mailinator.com",
         "password": "1234"
       }
     }

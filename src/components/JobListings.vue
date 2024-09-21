@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref, watch } from 'vue';
+import { onMounted, reactive, watch } from 'vue';
 import JobCard from './JobCard.vue';
 import axios from 'axios';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
@@ -7,25 +7,28 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 const props = defineProps({
   limit: {
     type: Number,
-    default: 10
+    default: 12
   },
   filters: {
     type: Object,
     default: () => ({ type: null, salary: null }),
+  },
+  showAllJobsButton: {
+    type: Boolean,
+    default: false
   }
 })
 
-const start = ref(0)
-
 const state = reactive({
   jobs : [],
+  start: 0,
   isLoading: true,
   showLoadMoreButton: true
 })
 
 const loadJobs = async () => {
   try {
-    let url = `http://localhost:5000/jobs?_start=${start.value}&_limit=${props.limit}`
+    let url = `http://localhost:5000/jobs?_start=${state.start}&_limit=${props.limit}`
 
     if (props.filters.type) {
       url += `&type=${encodeURI(props.filters.type)}`
@@ -45,7 +48,7 @@ const loadJobs = async () => {
       state.showLoadMoreButton = true
     }
   
-    start.value += props.limit
+    state.start += props.limit
   } catch (error) {
     console.error(error)    
   } finally {
@@ -55,10 +58,10 @@ const loadJobs = async () => {
 
 onMounted(async () => loadJobs())
 
-if (props.limit === 10) {
+if (!props.showAllJobsButton) {
   watch(props.filters , () => {
     state.jobs = []
-    start.value = 0
+    state.start = 0
     loadJobs()
   })
 }
@@ -73,7 +76,7 @@ if (props.limit === 10) {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <JobCard v-for="job in state.jobs" :key="job.id" :job="job" />
         </div>
-        <button v-if="limit === 10 && state.showLoadMoreButton" @click="loadJobs" class="block w-full bg-black text-white text-center py-3 mt-10 rounded-xl hover:bg-gray-700">Load More</button>
+        <button v-if="!showAllJobsButton && state.showLoadMoreButton" @click="loadJobs" class="block w-full bg-black text-white text-center py-3 mt-10 rounded-xl hover:bg-gray-700">Load More</button>
       </div>
     </section>
 
@@ -81,7 +84,7 @@ if (props.limit === 10) {
       <PulseLoader />
     </section>
 
-    <section v-if="limit < 10" class="m-auto max-w-lg my-10 px-6">
+    <section v-if="showAllJobsButton" class="m-auto max-w-lg my-10 px-6">
       <router-link
         :to="{name: 'jobs'}"
         class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"

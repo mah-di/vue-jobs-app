@@ -55,6 +55,12 @@ function toggleActiveStyle(name) {
                 </div>
                 <div v-else class="flex space-x-2">
                   <router-link
+                    :to="{name: 'company', params: {id: authStore.data.id}}"
+                    class="text-white rounded-md px-3 py-2"
+                    :class="route.name === 'company' && route.params.id === authStore.data.id ? 'bg-green-900' : 'hover:bg-gray-900'"
+                    >Company Home</router-link
+                  >
+                  <router-link
                     :to="{name: 'addJob'}"
                     class="text-white rounded-md px-3 py-2"
                     :class="toggleActiveStyle('addJob')"

@@ -1,5 +1,6 @@
 import useAuthStore from '@/store/AuthStore'
 import AddJobView from '@/views/AddJobView.vue'
+import CompanyView from '@/views/CompanyView.vue'
 import EditJobView from '@/views/EditJobView.vue'
 import HomeView from '@/views/HomeView.vue'
 import JobDetailView from '@/views/JobDetailView.vue'
@@ -41,6 +42,11 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/companies/:id',
+      name: 'company',
+      component: CompanyView
     },
     {
       path: '/signup',

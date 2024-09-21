@@ -7,5 +7,5 @@ import HomeCards from '@/components/HomeCards.vue';
 <template>
     <HeroSection />
     <HomeCards />
-    <JobListings :limit="3" />
+    <JobListings :limit="3" :show-all-jobs-button="true" />
 </template>
