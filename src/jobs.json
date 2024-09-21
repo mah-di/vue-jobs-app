@@ -1,13 +1,13 @@
 {
   "jobs": [
     {
-      "title": "Senior Vue Developer",
+      "id": "1",
+      "title": "Senior Vue Dev",
       "type": "Full-Time",
       "location": "Boston, MA",
       "description": "We are seeking a talented Front-End Developer to join our team in Boston, MA. The ideal candidate will have strong skills in HTML, CSS, and JavaScript, with experience working with modern JavaScript frameworks such as Vue or Angular.",
       "salary": "$90K - $100K",
-      "companyId": 1,
-      "id": "1"
+      "companyId": 1
     },
     {
       "id": "2",
@@ -152,6 +152,15 @@
       "location": "Voluptates qui archi",
       "salary": "$50K - $60K",
       "companyId": "b720"
+    },
+    {
+      "id": "1cf4",
+      "type": "Internship",
+      "title": "Similique nulla volu",
+      "description": "Repellendus Minim c",
+      "location": "Eiusmod tempora nemo",
+      "salary": "Under $50K",
+      "companyId": "2"
     }
   ],
   "companies": [
@@ -162,18 +171,18 @@
       "contactEmail": "contact@teksolutions.com",
       "contactPhone": "555-555-5555",
       "credentials": {
-        "email": "contact@teksolutions.com",
+        "email": "contact@newtek.com",
         "password": "1234"
       }
     },
     {
       "id": "2",
       "name": "Veneer Solutions",
-      "description": "Veneer Solutions is a creative agency specializing in digital design and development. Our team is dedicated to pushing the boundaries of creativity and innovation to deliver exceptional results for our clients.",
+      "description": "Veneer Solutions is a creative agency specializing in digital design, development and engineering. Our team is dedicated to pushing the boundaries of creativity and innovation to deliver exceptional results for our clients.",
       "contactEmail": "contact@loremipsum.com",
-      "contactPhone": "555-555-5552",
+      "contactPhone": "555-555-5555",
       "credentials": {
-        "email": "contact@loremipsums.com",
+        "email": "contact@veneer.com",
         "password": "1234"
       }
     },
@@ -196,6 +205,17 @@
       "contactPhone": "+1 (708) 859-6791",
       "credentials": {
         "email": "fynotoku@mailinator.com",
+        "password": "1234"
+      }
+    },
+    {
+      "id": "8c70",
+      "name": "Ware and Mcguire LLC",
+      "description": "Omnis obcaecati culp",
+      "contactEmail": "sudewibup@mailinator.com",
+      "contactPhone": "+1 (562) 438-4174",
+      "credentials": {
+        "email": "dezuf@mailinator.com",
         "password": "1234"
       }
     }

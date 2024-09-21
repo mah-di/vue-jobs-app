@@ -48,7 +48,7 @@ const updateJob = async () => {
           <div v-if="state.isLoading" class="">
             <PulseLoader />
           </div>
-          <JobForm v-else formType="Edit" :job="state.job" @update-job="updateJob" />
+          <JobForm v-else formType="Edit" :job="state.job" @form-submit="updateJob" />
          </div>
       </div>
     </section>

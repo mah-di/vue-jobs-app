@@ -1,4 +1,5 @@
 <script setup>
+import useAuthStore from '@/store/AuthStore';
 import axios from 'axios';
 import { onMounted, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -7,6 +8,7 @@ import { useToast } from 'vue-toastification';
 
 const route = useRoute()
 const router = useRouter()
+const authStore = useAuthStore()
 
 const state = reactive({
     job: {},
@@ -16,7 +18,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const jobRes = await axios.get(`http://localhost:5000/jobs/${route.params.id}?_embed=companies`)
+        const jobRes = await axios.get(`http://localhost:5000/jobs/${route.params.id}`)
         state.job = jobRes.data
         const compRes = await axios.get(`http://localhost:5000/companies/${state.job.companyId}`)
         state.company = compRes.data
@@ -28,6 +30,9 @@ onMounted(async () => {
 })
 
 const deleteJob = async () => {
+    if (authStore.data.id != state.job.companyId) {
+      return alert("You don't have permission to delete this job")
+    }
     const toast = useToast()
     try {
         if (window.confirm('Are you sure you want to delete this job?')) {
@@ -120,7 +125,7 @@ const deleteJob = async () => {
             </div>
 
             <!-- Manage -->
-            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+            <div v-if="authStore.data.id == state.job.companyId" class="bg-white p-6 rounded-lg shadow-md mt-6">
               <h3 class="text-xl font-bold mb-6">Manage Job</h3>
               <router-link
                 :to="{name: 'editJob', params: {id: state.job.id}}"

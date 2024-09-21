@@ -40,7 +40,7 @@ const addJob = async () => {
       <div
         class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
       >
-        <JobForm formType="Add" :job="job" @update-job="addJob" />
+        <JobForm formType="Add" :job="job" @form-submit="addJob" />
         </div>
     </div>
   </section>

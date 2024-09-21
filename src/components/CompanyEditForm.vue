@@ -3,6 +3,7 @@ import { inject, onMounted, reactive } from 'vue';
 import CompanyForm from './CompanyForm.vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import axios from 'axios';
+import { useToast } from 'vue-toastification';
 
 const companyId = inject('companyId')
 const componentToBeLoaded = inject('componentToBeLoaded')
@@ -24,11 +25,14 @@ onMounted(async () => {
 })
 
 const updateCompany = async () => {
+    const toast = useToast()
     try {
         await axios.put(`http://localhost:5000/companies/${companyId.value}`, state.company)
         componentToBeLoaded.info = true
+        toast.success('Company information updated successfully!!!')
     } catch (error) {
         console.error(error)
+        toast.error('Company information was not updated...')
     } finally {
         state.isLoading = false
     }

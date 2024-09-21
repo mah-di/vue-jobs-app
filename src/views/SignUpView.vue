@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import CompanyForm from '@/components/CompanyForm.vue';
+import { useToast } from 'vue-toastification';
 
 const router = useRouter()
 const company = reactive({
@@ -18,13 +19,14 @@ const company = reactive({
 })
 
 const signup = async () => {
-    if (!company.name || !company.description || !company.contactEmail || !company.contactPhone || !company.credentials.email || !company.credentials.password) {
-        return alert('Please fill out all required fields.')
-    }
+    if (!company.name || !company.description || !company.contactEmail || !company.contactPhone || !company.credentials.email || !company.credentials.password) return alert('Please fill out all required fields.')
 
     try {
         await axios.post('http://localhost:5000/companies', company)
         
+        const toast = useToast()
+        toast.success('Company registered successfully!!! Login to continue...')
+
         router.push({ name: 'login' })
     } catch (error) {
         console.error(error)

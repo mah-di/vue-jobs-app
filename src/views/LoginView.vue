@@ -3,6 +3,7 @@
 import TextInput from '@/components/TextInput.vue';
 import { useRouter } from 'vue-router';
 import useAuthStore from '@/store/AuthStore';
+import { useToast } from 'vue-toastification';
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -13,9 +14,10 @@ const login = async () => {
     }
     const error = await authStore.login()
 
-    if (error) {
-        return alert(error)
-    }
+    if (error) return alert(error)
+
+    const toast = useToast()
+    toast.success(`Welcome, ${authStore.data.name}`)
 
     router.push({ name: 'home' })
 }

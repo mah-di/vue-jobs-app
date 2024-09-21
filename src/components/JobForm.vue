@@ -10,7 +10,7 @@ defineProps({
     job: Object
 })
 
-defineEmits(['update-job'])
+defineEmits(['formSubmit'])
 </script>
 
 <template>
@@ -29,7 +29,7 @@ defineEmits(['update-job'])
 
         <div>
             <button
-            @click.prevent="$emit('update-job')"
+            @click.prevent="$emit('formSubmit')"
             class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
             type="submit"
             >
