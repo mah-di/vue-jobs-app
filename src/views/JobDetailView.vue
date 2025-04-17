@@ -1,6 +1,6 @@
 <script setup>
 import useAuthStore from '@/store/AuthStore';
-import axios from 'axios';
+import api from '@/services/api';
 import { onMounted, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
@@ -18,9 +18,9 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const jobRes = await axios.get(`http://localhost:5000/jobs/${route.params.id}`)
+        const jobRes = await api.get(`/jobs/${route.params.id}`)
         state.job = jobRes.data
-        const compRes = await axios.get(`http://localhost:5000/companies/${state.job.companyId}`)
+        const compRes = await api.get(`/companies/${state.job.companyId}`)
         state.company = compRes.data
     } catch (error) {
         console.error(error)
@@ -36,7 +36,7 @@ const deleteJob = async () => {
     const toast = useToast()
     try {
         if (window.confirm('Are you sure you want to delete this job?')) {
-            await axios.delete(`http://localhost:5000/jobs/${state.job.id}`)
+            await api.delete(`/jobs/${state.job.id}`)
             toast.success('Job deleted successfully!!!')
             router.push({name: 'jobs'})
         }

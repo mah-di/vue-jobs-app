@@ -2,7 +2,7 @@
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import JobCard from './JobCard.vue';
 import { computed, inject, onMounted, reactive, watch } from 'vue';
-import axios from 'axios';
+import api from '@/services/api';
 
 const componentToBeLoaded = inject('componentToBeLoaded')
 const companyId = inject('companyId')
@@ -18,7 +18,7 @@ const showLoadMoreButton = computed(() => state.jobs.length < state.start ? fals
 const loadJobs = async () => {
     state.isLoading = true
     try {
-        const data = await axios.get(`http://localhost:5000/jobs?_start=${state.start}&_limit=6&companyId=${companyId.value}`)
+        const data = await api.get(`/jobs?_start=${state.start}&_limit=6&companyId=${companyId.value}`)
         state.jobs.push(...data.data) 
         state.start += 6
     } catch (error) {

@@ -1,5 +1,5 @@
 <script setup>
-import axios from 'axios';
+import api from '@/services/api';
 import { inject, onMounted, reactive, watch } from 'vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
@@ -13,7 +13,7 @@ const state = reactive({
 
 const loadCompany = async () => {
     try {
-        const compRes = await axios.get(`http://localhost:5000/companies/${companyId.value}`)
+        const compRes = await api.get(`/companies/${companyId.value}`)
         state.company = compRes.data
     } catch (error) {
         console.error(error)

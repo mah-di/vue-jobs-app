@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import JobForm from '@/components/JobForm.vue';
-import axios from 'axios';
+import api from '@/services/api';
 import { onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
@@ -16,7 +16,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const data = await axios.get(`http://localhost:5000/jobs/${route.params.id}`)
+        const data = await api.get(`/jobs/${route.params.id}`)
         Object.assign(state.job, data.data)
     } catch (error) {
         console.error(error)
@@ -28,7 +28,7 @@ onMounted(async () => {
 const updateJob = async () => {
     const toast = useToast()
     try {
-        await axios.put(`http://localhost:5000/jobs/${state.job.id}`, state.job)
+        await api.put(`/jobs/${state.job.id}`, state.job)
         toast.success('Job updated successfully!!!')
         router.push({name: 'jobDetails', params: {id: state.job.id}})
     } catch (error) {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "@/services/api";
 import { defineStore } from "pinia";
 import { computed, reactive } from "vue";
 
@@ -19,7 +19,7 @@ const useAuthStore = defineStore("auth", () => {
         let error = null
 
         try {
-            const response = await axios.get(`http://localhost:5000/companies?credentials.email=${encodeURI(credentials.email)}&credentials.password=${encodeURI(credentials.password)}`)
+            const response = await api.get(`/companies?credentials.email=${encodeURI(credentials.email)}&credentials.password=${encodeURI(credentials.password)}`)
 
             if (response.data.length === 0) {
                 error = "Invalid credentials"

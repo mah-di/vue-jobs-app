@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, reactive, watch } from 'vue';
 import JobCard from './JobCard.vue';
-import axios from 'axios';
+import api from '@/services/api';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 const props = defineProps({
@@ -28,7 +28,7 @@ const state = reactive({
 
 const loadJobs = async () => {
   try {
-    let url = `http://localhost:5000/jobs?_start=${state.start}&_limit=${props.limit}`
+    let url = `/jobs?_start=${state.start}&_limit=${props.limit}`
 
     if (props.filters.type) {
       url += `&type=${encodeURI(props.filters.type)}`
@@ -38,7 +38,7 @@ const loadJobs = async () => {
       url += `&salary=${encodeURI(props.filters.salary)}`
     }
 
-    const data = await axios.get(url)
+    const data = await api.get(url)
   
     state.jobs.push(...data.data)
 

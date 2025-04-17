@@ -8,7 +8,7 @@ import JobListingView from '@/views/JobListingView.vue'
 import LoginView from '@/views/LoginView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import SignUpView from '@/views/SignUpView.vue'
-import axios from 'axios'
+import api from '@/services/api'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -30,7 +30,7 @@ const router = createRouter({
       component: JobDetailView,
       beforeEnter: async (to, from, next) => {
         try {
-          const data = await axios.get(`http://localhost:5000/jobs/${to.params.id}`)
+          const data = await api.get(`/jobs/${to.params.id}`)
 
           if (data.data === null) return next({ name: 'notFound' })
 
@@ -52,7 +52,7 @@ const router = createRouter({
         const authStore = useAuthStore()
 
         try {
-          const data = await axios.get(`http://localhost:5000/jobs/${to.params.id}`)
+          const data = await api.get(`/jobs/${to.params.id}`)
 
           if (data.data === null) return next({ name: 'notFound' })
 
@@ -85,7 +85,7 @@ const router = createRouter({
       component: CompanyView,
       beforeEnter: async (to, from, next) => {
         try {
-          const data = await axios.get(`http://localhost:5000/companies/${to.params.id}`)
+          const data = await api.get(`/companies/${to.params.id}`)
 
           if (data.data === null) return next({ name: 'notFound' })
 

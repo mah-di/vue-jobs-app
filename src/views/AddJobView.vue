@@ -1,7 +1,7 @@
 <script setup>
 import JobForm from '@/components/JobForm.vue';
 import useAuthStore from '@/store/AuthStore';
-import axios from 'axios';
+import api from '@/services/api';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
@@ -24,7 +24,7 @@ const addJob = async () => {
 
   const toast = useToast()
   try {
-      const data = await axios.post('http://localhost:5000/jobs', job)
+      const data = await api.post('/jobs', job)
       toast.success('Job added successfully!!!')
       router.push({name: 'jobDetails', params: {id: data.data.id}})
   } catch (error) {
